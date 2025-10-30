@@ -22,10 +22,6 @@ export async function fetchHomeData() {
 export default async function HomePage() {
   const data = await fetchHomeData();
 
-  //
-  // console.log("/////////// Fetched story:", story);
-  // console.log("/////////// Fetched data:", data);
-
   return (
     <div>
       <StoryblokStory
