@@ -1,15 +1,37 @@
 import { draftMode } from "next/headers";
-import { NextRequest } from "next/server";
-import { redirect } from "next/navigation";
+import { NextResponse } from "next/server";
 
-export const GET = async (request: NextRequest) => {
+export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
-  const slug = searchParams.get("slug") || "/";
+  const slug = searchParams.get("slug");
 
+  // Enable draft mode
+  (await draftMode()).enable();
+
+  // Validate slug
   if (!slug) {
-    redirect("/");
+    return NextResponse.redirect(new URL("/", request.url));
   }
 
-  (await draftMode()).enable();
-  redirect(`/${slug}?${searchParams.toString()}`);
-};
+  // Remove leading and trailing slashes
+  const cleanSlug = slug.replace(/^\/+|\/+$/g, "");
+
+  // Redirect to the path
+  return NextResponse.redirect(new URL(`/${cleanSlug}`, request.url));
+}
+
+// import { draftMode } from "next/headers";
+// import { NextRequest } from "next/server";
+// import { redirect } from "next/navigation";
+
+// export const GET = async (request: NextRequest) => {
+//   const { searchParams } = new URL(request.url);
+//   const slug = searchParams.get("slug") || "/";
+
+//   if (!slug) {
+//     redirect("/");
+//   }
+
+//   (await draftMode()).enable();
+//   redirect(`/${slug}?${searchParams.toString()}`);
+// };
