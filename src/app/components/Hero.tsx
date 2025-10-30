@@ -1,3 +1,5 @@
+import { storyblokEditable } from "@storyblok/react";
+
 interface HeroParams {
   blok: {
     headline: string;
@@ -10,6 +12,7 @@ function Hero(params: HeroParams) {
 
   return (
     <section
+      {...storyblokEditable(params.blok)}
       className="h-[calc(100vh-150px)] flex flex-col justify-center items-center
      px-4 w-full"
     >
