@@ -29,7 +29,7 @@ export default async function HomePage() {
   return (
     <div>
       <StoryblokStory
-        bridgeOptions={{ resolve_relations: "recent_articles.articles" }}
+        bridgeOptions={{ resolve_relations: ["recent_articles.articles"] }}
         story={data}
       />
     </div>
