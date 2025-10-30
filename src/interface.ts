@@ -37,15 +37,22 @@ export interface StoryblokStorySummary {
 // --- Home page content structure ---
 
 export interface StoryblokHomeContent {
-  _uid: string;
-  blocks: StoryblokBlock[];
-  component: "page";
-  _editable: string;
+  ref?: string;
+  blok: {
+    _uid: string;
+    blocks: StoryblokBlock[];
+    component: "page";
+    _editable: string;
+  };
 }
 
 // --- Union type for all possible block components on the home page ---
 
-export type StoryblokBlock = StoryblokHero | StoryblokGrid | RecentArticlesBlok;
+export type StoryblokBlock =
+  | StoryblokHero
+  | StoryblokGrid
+  | RecentArticlesBlok
+  | AboutBlokProps;
 
 // --- HERO section ---
 
@@ -55,6 +62,31 @@ export interface StoryblokHero {
   content: string;
   component: "hero";
   _editable: string;
+}
+
+// ABOUT
+export interface AboutBlokProps {
+  ref?: any;
+  blok: {
+    _uid: string;
+    body: string;
+    headline: string;
+    component: "about";
+    about_image: {
+      id: number;
+      alt: string;
+      name: string;
+      focus: string;
+      title: string;
+      source: string;
+      filename: string;
+      copyright: string;
+      fieldtype: "asset";
+      meta_data: Record<string, any>;
+      is_external_url: boolean;
+    };
+    _editable: string;
+  };
 }
 
 // --- GRID section (used for features or testimonials) ---

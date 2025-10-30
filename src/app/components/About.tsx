@@ -1,29 +1,5 @@
+import { AboutBlokProps } from "@/src/interface";
 import Image from "next/image";
-
-/* eslint-disable @typescript-eslint/no-explicit-any */
-export interface AboutBlokProps {
-  ref?: any;
-  blok: {
-    _uid: string;
-    body: string;
-    headline: string;
-    component: "about";
-    about_image: {
-      id: number;
-      alt: string;
-      name: string;
-      focus: string;
-      title: string;
-      source: string;
-      filename: string;
-      copyright: string;
-      fieldtype: "asset";
-      meta_data: Record<string, any>;
-      is_external_url: boolean;
-    };
-    _editable: string;
-  };
-}
 
 function About({ blok }: AboutBlokProps) {
   // console.log("About component params:", blok);

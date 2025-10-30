@@ -2,9 +2,10 @@ import { getStoryblokApi } from "@/src/lib/storyblok";
 import { StoryblokStory } from "@storyblok/react/rsc";
 import { draftMode } from "next/headers";
 
-export async function fetchData() {
+export async function fetchHomeData() {
   // draft mode
   const { isEnabled } = await draftMode();
+  console.log("Draft mode is", isEnabled ? "enabled" : "disabled");
 
   const client = getStoryblokApi();
   const response = await client.getStory("home", {
@@ -18,15 +19,10 @@ export async function fetchData() {
   return response.data.story;
 }
 
-export default async function Home() {
-  console.log(
-    "Draft mode is",
-    (await draftMode()).isEnabled ? "enabled" : "disabled"
-  );
+export default async function HomePage() {
+  const data = await fetchHomeData();
 
-  const data = await fetchData();
-
-  // ?????
+  //
   // console.log("/////////// Fetched story:", story);
   // console.log("/////////// Fetched data:", data);
 
