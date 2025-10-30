@@ -9,10 +9,11 @@ export async function fetchHomeData() {
 
   const client = getStoryblokApi();
   const response = await client.getStory("home", {
-    version:
-      process.env.NODE_ENV === "development" || isEnabled
-        ? "published"
-        : "draft",
+    version: isEnabled ? "draft" : "published",
+    // version:
+    //   process.env.NODE_ENV === "development" || isEnabled
+    //     ? "published"
+    //     : "draft",
     resolve_relations: "recent_articles.articles"
   });
 
