@@ -2,7 +2,7 @@
 // /* eslint-disable @typescript-eslint/no-explicit-any */
 // import Link from "next/link";
 import { getStoryblokApi } from "@/src/lib/storyblok";
-import { StoryblokServerStory } from "@storyblok/react/rsc";
+import { storyblokEditable, StoryblokServerStory } from "@storyblok/react/rsc";
 import RecentArticle from "../components/RecentArticle";
 
 export async function fetchArticlesPage() {
@@ -35,7 +35,10 @@ export default async function ArticlesPage() {
   return (
     <>
       <StoryblokServerStory story={story.story} />
-      <section className="pt-16 pb-5 max-w-4xl mx-auto w-full px-4 bg-blue-100 rounded-md shadow my-5">
+      <section
+        {...storyblokEditable(story.story.content)}
+        className="pt-16 pb-5 max-w-4xl mx-auto w-full px-4 bg-blue-100 rounded-md shadow my-5"
+      >
         <h2 className="text-2xl md:text-3xl font-bold text-center">
           My articles
         </h2>
