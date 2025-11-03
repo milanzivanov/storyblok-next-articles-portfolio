@@ -1,4 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { StoryblokArticle } from "@/src/interface";
+import { storyblokEditable } from "@storyblok/react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -8,7 +10,10 @@ interface RecentArticleProps {
 
 function RecentArticle({ story }: RecentArticleProps) {
   return (
-    <article className="max-w-5xl mx-auto bg-white rounded-sm shadow">
+    <article
+      {...storyblokEditable(story as any)}
+      className="max-w-5xl mx-auto bg-white rounded-sm shadow"
+    >
       <Image
         className="aspect-video object-cover w-full rounded-md p-2"
         src={story.content.main_image.filename}

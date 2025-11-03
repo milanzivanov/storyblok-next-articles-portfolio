@@ -1,11 +1,16 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { AboutBlokProps } from "@/src/interface";
+import { storyblokEditable } from "@storyblok/react";
 import Image from "next/image";
 
 function About({ blok }: AboutBlokProps) {
   // console.log("About component params:", blok);
 
   return (
-    <section className="max-w-4xl mx-auto w-full bg-blue-100 pt-16 pb-5 px-4 rounded-md shadow my-20">
+    <section
+      {...storyblokEditable(blok as any)}
+      className="max-w-4xl mx-auto w-full bg-blue-100 pt-16 pb-5 px-4 rounded-md shadow my-20"
+    >
       <h2 className="text-3xl text-center md:text-3xl font-bold">
         {blok.headline}
       </h2>

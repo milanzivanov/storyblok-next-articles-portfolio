@@ -1,11 +1,16 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { StoryblokTestimonial } from "@/src/interface";
+import { storyblokEditable } from "@storyblok/react";
 import Image from "next/image";
 
 function Testimonial(params: StoryblokTestimonial) {
   // console.log("Testimonial component params:", params);
 
   return (
-    <div className="bg-white p-8 rounded-sm shadow">
+    <div
+      {...storyblokEditable(params.blok as any)}
+      className="bg-white p-8 rounded-sm shadow"
+    >
       <div className="flex items-center gap-3">
         <Image
           src={params.blok.testimonial_image.filename ?? "/globe.svg"}
