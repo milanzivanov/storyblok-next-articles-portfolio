@@ -53,11 +53,11 @@ export async function GET(request: Request) {
   const redirectUrl = new URL(`/${cleanSlug}`, request.url);
   console.log("➡️ Redirecting to:", redirectUrl.toString());
 
-  return NextResponse.json({
-    rawSlug: slugParam,
-    cleanSlug,
-    redirectTo: `/${cleanSlug}`
-  });
+  // return NextResponse.json({
+  //   rawSlug: slugParam,
+  //   cleanSlug,
+  //   redirectTo: `/${cleanSlug}`
+  // });
 
-  // return NextResponse.redirect(redirectUrl);
+  return NextResponse.redirect(redirectUrl);
 }
