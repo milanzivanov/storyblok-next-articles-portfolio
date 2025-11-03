@@ -1,10 +1,12 @@
 import { StoryblokStory } from "@storyblok/react/rsc";
 import { getStoryblokApi } from "@/src/lib/storyblok";
+import { draftMode } from "next/headers";
 
 export const generateStaticParams = async () => {
+  const { isEnabled } = await draftMode();
   const client = getStoryblokApi();
   const response = await client.getStories({
-    version: process.env.NODE_ENV === "development" ? "published" : "draft",
+    version: isEnabled ? "draft" : "published",
     content_type: "article"
   });
 
@@ -14,9 +16,10 @@ export const generateStaticParams = async () => {
 };
 
 const fetchArticlePage = async (slug: string) => {
+  const { isEnabled } = await draftMode();
   const client = getStoryblokApi();
   const response = await client.getStory(`articles/${slug}`, {
-    version: process.env.NODE_ENV === "development" ? "published" : "draft"
+    version: isEnabled ? "draft" : "published"
   });
 
   return response.data.story;
@@ -35,3 +38,6 @@ export default async function ArticlePage({
     </div>
   );
 }
+
+export const dynamic = "force-dynamic";
+export const revalidate = 0;

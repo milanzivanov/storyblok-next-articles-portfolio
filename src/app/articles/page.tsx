@@ -3,11 +3,13 @@
 import { getStoryblokApi } from "@/src/lib/storyblok";
 import { storyblokEditable, StoryblokServerStory } from "@storyblok/react/rsc";
 import RecentArticle from "../components/RecentArticle";
+import { draftMode } from "next/headers";
 
 export async function fetchArticlesPage() {
+  const { isEnabled } = await draftMode();
   const client = getStoryblokApi();
   const response = await client.getStory(`articles`, {
-    version: "draft"
+    version: isEnabled ? "draft" : "published"
     // starts_with: "articles/"
   });
 
@@ -15,14 +17,18 @@ export async function fetchArticlesPage() {
 }
 
 export async function fetchAllArticles() {
+  const { isEnabled } = await draftMode();
   const client = getStoryblokApi();
   const response = await client.getStories({
     content_type: "article",
-    version: process.env.NODE_ENV === "development" ? "published" : "draft"
+    version: isEnabled ? "draft" : "published"
   });
 
   return response.data.stories;
 }
+
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 export default async function ArticlesPage() {
   const story = await fetchArticlesPage();
