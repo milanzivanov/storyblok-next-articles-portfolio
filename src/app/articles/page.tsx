@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-// /* eslint-disable @typescript-eslint/no-explicit-any */
 // import Link from "next/link";
 import { getStoryblokApi } from "@/src/lib/storyblok";
 import { storyblokEditable, StoryblokServerStory } from "@storyblok/react/rsc";
