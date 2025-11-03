@@ -20,19 +20,44 @@ import { NextResponse } from "next/server";
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
-  const slug = searchParams.get("slug");
+  const slugParam = searchParams.get("slug");
+
+  console.log(" ///////////// Full request URL:", request.url);
+  console.log(" ///////////// Raw slug param:", slugParam);
 
   // Enable draft mode
   (await draftMode()).enable();
 
   // Validate slug
-  if (!slug) {
+  if (!slugParam) {
+    console.warn("⚠️ Missing slug param — redirecting to home");
     return NextResponse.redirect(new URL("/", request.url));
   }
 
-  // Remove leading and trailing slashes
-  const cleanSlug = slug.replace(/^\/+|\/+$/g, "");
+  // --- 🧩 Clean up the slug ---
+  // Handles cases like:
+  // - /articles/portfolio-next-2024
+  // - https://storyblok-next-articles-portfolio.vercel.app/articles/portfolio-next-2024
+  // - articles/portfolio-next-2024/
+  let cleanSlug = slugParam;
 
-  // Redirect to the path
-  return NextResponse.redirect(new URL(`/${cleanSlug}`, request.url));
+  // Remove full origin if Storyblok includes it
+  cleanSlug = cleanSlug.replace(/^https?:\/\/[^/]+/, "");
+
+  // Remove leading and trailing slashes
+  cleanSlug = cleanSlug.replace(/^\/+|\/+$/g, "");
+
+  console.log("✅ Cleaned slug:", cleanSlug);
+
+  // --- Redirect to cleaned path ---
+  const redirectUrl = new URL(`/${cleanSlug}`, request.url);
+  console.log("➡️ Redirecting to:", redirectUrl.toString());
+
+  // return NextResponse.redirect(redirectUrl);
+
+  return NextResponse.json({
+    rawSlug: slugParam,
+    cleanSlug,
+    redirectTo: `/${cleanSlug}`
+  });
 }
