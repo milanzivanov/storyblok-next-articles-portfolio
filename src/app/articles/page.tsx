@@ -12,14 +12,15 @@ export async function fetchArticlesPage() {
   const client = getStoryblokApi();
   const response = await client.getStory(`articles`, {
     version: isEnabled ? "draft" : "published"
-    // starts_with: "articles/"
   });
 
   return response.data;
 }
 
 export async function fetchAllArticles() {
+
   const { isEnabled } = await draftMode();
+
   const client = getStoryblokApi();
   const response = await client.getStories({
     content_type: "article",

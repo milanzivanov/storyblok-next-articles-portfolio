@@ -1,5 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import { StoryblokArticle } from "@/src/interface";
-import { renderRichText, StoryblokRichTextNode } from "@storyblok/react";
+import { renderRichText, storyblokEditable, StoryblokRichTextNode } from "@storyblok/react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -7,7 +9,7 @@ function Article({ blok }: { blok: StoryblokArticle }) {
   // console.log("///////// article page ", blok);
 
   return (
-    <main className="max-w-4xl mx-auto px-4 w-full pt-6 pb-12">
+    <main  {...storyblokEditable(blok as any)} className="max-w-4xl mx-auto px-4 w-full pt-6 pb-12">
       <h3 className="text-3xl font-bold">
         {blok.name}
         <span className="text-blue-700">({blok.category})</span>
