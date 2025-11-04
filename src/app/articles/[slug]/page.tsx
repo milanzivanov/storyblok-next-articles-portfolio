@@ -3,10 +3,9 @@ import { getStoryblokApi } from "@/src/lib/storyblok";
 import { draftMode } from "next/headers";
 
 export const generateStaticParams = async () => {
-  const { isEnabled } = await draftMode();
   const client = getStoryblokApi();
   const response = await client.getStories({
-    version: isEnabled ? "draft" : "published",
+    version: "published",
     content_type: "article"
   });
 
@@ -38,3 +37,6 @@ export default async function ArticlePage({
     </div>
   );
 }
+
+export const dynamic = "force-dynamic";
+export const revalidate = 0;

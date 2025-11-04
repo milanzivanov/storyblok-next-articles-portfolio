@@ -22,12 +22,15 @@ export async function fetchAllArticles() {
   const { isEnabled } = await draftMode();
   const client = getStoryblokApi();
   const response = await client.getStories({
-    version: isEnabled ? "draft" : "published",
     content_type: "article",
+    version: isEnabled ? "draft" : "published"
   });
 
   return response.data.stories;
 }
+
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 export default async function ArticlesPage() {
   const story = await fetchArticlesPage();
