@@ -3,10 +3,9 @@ import { getStoryblokApi } from "@/src/lib/storyblok";
 import { draftMode } from "next/headers";
 
 export const generateStaticParams = async () => {
-  const { isEnabled } = await draftMode();
   const client = getStoryblokApi();
   const response = await client.getStories({
-    version: isEnabled ? "draft" : "published",
+    version: process.env.NODE_ENV === "development" ? "draft" : "published",
     content_type: "article"
   });
 
