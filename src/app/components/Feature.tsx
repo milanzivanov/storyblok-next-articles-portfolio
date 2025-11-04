@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { StoryblokFeature } from "@/src/interface";
-import { storyblokEditable } from "@storyblok/react";
+import { storyblokEditable } from "@storyblok/react/rsc";
 
 const Feature = (params: StoryblokFeature) => {
   // console.log("Feature component params:", params);
 
   return (
     <div
-      {...storyblokEditable(params.blok as any)}
+      {...storyblokEditable(params.blok as { _uid: string; _editable?: string })}
       className="bg-white p-8 rounded-sm shadow"
     >
       <h3 className="font-bold text-xl">{params.blok.headline}</h3>

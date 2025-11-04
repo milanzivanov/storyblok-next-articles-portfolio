@@ -1,14 +1,14 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import { RecentArticlesBlok } from "@/src/interface";
 import RecentArticle from "./RecentArticle";
-import { storyblokEditable } from "@storyblok/react";
+import { storyblokEditable } from "@storyblok/react/rsc";
 
 function RecentArticles({ blok }: { blok: RecentArticlesBlok }) {
   // console.log("///////// RecentArticles component received blok:", blok);
 
   return (
     <section
-      {...storyblokEditable(blok as any)}
+      {...storyblokEditable(blok as { _uid: string; _editable?: string })}
       className="max-w-4xl mx-auto w-full bg-blue-100 pt-16 pb-5 px-4 rounded-md shadow my-5"
     >
       <h2 className="text-2xl md:text-3xl font-bold text-center">

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { StoryblokTestimonial } from "@/src/interface";
-import { storyblokEditable } from "@storyblok/react";
+import { storyblokEditable } from "@storyblok/react/rsc";
 import Image from "next/image";
 
 function Testimonial(params: StoryblokTestimonial) {
@@ -8,7 +8,7 @@ function Testimonial(params: StoryblokTestimonial) {
 
   return (
     <div
-      {...storyblokEditable(params.blok as any)}
+      {...storyblokEditable(params.blok as { _uid: string; _editable?: string })}
       className="bg-white p-8 rounded-sm shadow"
     >
       <div className="flex items-center gap-3">
