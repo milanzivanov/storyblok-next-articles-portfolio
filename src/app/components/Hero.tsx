@@ -1,4 +1,4 @@
-import { storyblokEditable } from "@storyblok/react";
+import { storyblokEditable } from "@storyblok/react/rsc";
 
 interface HeroParams {
   blok: {
