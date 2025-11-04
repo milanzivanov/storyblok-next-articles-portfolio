@@ -37,7 +37,10 @@ export default async function ArticlePage({
 
   return (
     <div>
-      <StoryblokStory story={story} />
+      <StoryblokStory
+        story={story}
+        bridgeOptions={{ resolve_relations: ["recent_articles.articles"] }}
+      />
     </div>
   );
 }

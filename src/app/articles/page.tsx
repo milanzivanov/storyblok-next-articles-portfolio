@@ -40,7 +40,10 @@ export default async function ArticlesPage() {
 
   return (
     <>
-      <StoryblokServerStory story={story.story} />
+      <StoryblokServerStory
+        story={story.story}
+        bridgeOptions={{ resolve_relations: ["recent_articles.articles"] }}
+      />
       <section
         {...storyblokEditable(story.story.content)}
         className="pt-16 pb-5 max-w-4xl mx-auto w-full px-4 bg-blue-100 rounded-md shadow my-5"
