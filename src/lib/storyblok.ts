@@ -8,16 +8,6 @@ import RecentArticles from "../app/components/RecentArticles";
 import Testimonial from "../app/components/Testimonial";
 import About from "../app/components/About";
 
-// const cachedFetch = (
-//   input: RequestInfo | URL,
-//   init?: RequestInit
-// ): Promise<Response> => {
-//   return fetch(input, {
-//     ...init,
-//     cache: process.env.NODE_ENV === "development" ? "no-store" : "force-cache"
-//   });
-// };
-
 export const getStoryblokApi = storyblokInit({
   accessToken: process.env.NEXT_PUBLIC_STORYBLOK_CONTENT_API_ACCESS_TOKEN || "",
   use: [apiPlugin],
@@ -35,6 +25,5 @@ export const getStoryblokApi = storyblokInit({
   enableFallbackComponent: true,
   apiOptions: {
     region: "eu"
-    // fetch: cachedFetch
   }
 });
