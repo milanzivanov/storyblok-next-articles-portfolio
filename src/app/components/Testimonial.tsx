@@ -1,30 +1,34 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { StoryblokTestimonial } from "@/src/interface";
-import { storyblokEditable } from "@storyblok/react/rsc";
+import { SbBlokData, storyblokEditable } from "@storyblok/react/rsc";
+import { StoryblokAsset } from "@/src/interface";
 import Image from "next/image";
 
-function Testimonial(params: StoryblokTestimonial) {
-  // console.log("Testimonial component params:", params);
+interface TestimonialProps {
+  blok: SbBlokData & {
+    name: string;
+    comment?: string;
+    testimonial_image?: StoryblokAsset;
+  };
+}
 
+export default function Testimonial({ blok }: TestimonialProps) {
   return (
     <div
-      {...storyblokEditable(params.blok as { _uid: string; _editable?: string })}
+      {...storyblokEditable(blok)}
       className="bg-white p-8 rounded-sm shadow"
     >
       <div className="flex items-center gap-3">
         <Image
-          src={params.blok.testimonial_image.filename ?? "/globe.svg"}
-          alt={params.blok.name}
+          src={blok.testimonial_image?.filename ?? "/globe.svg"}
+          alt={blok.name}
           width={50}
           height={50}
           className="rounded-full"
         />
         <h4 className="text-md leading-relaxed font-bold text-gray-700">
-          {params.blok.name}
+          {blok.name}
         </h4>
       </div>
-      <p className="text-sm mt-6">{params.blok.comment}</p>
+      {blok.comment && <p className="text-sm mt-6">{blok.comment}</p>}
     </div>
   );
 }
-export default Testimonial;

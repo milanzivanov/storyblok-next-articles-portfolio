@@ -1,15 +1,16 @@
-import { StoryblokGrid } from "@/src/interface";
-import {
-  storyblokEditable,
-  StoryblokServerComponent
-} from "@storyblok/react/rsc";
+import { SbBlokData, storyblokEditable, StoryblokServerComponent } from "@storyblok/react/rsc";
 
-export default function Grid({ blok }: { blok: StoryblokGrid }) {
-  // console.log("///////// Grid component received stories:", blok);
+interface GridProps {
+  blok: SbBlokData & {
+    headline: string;
+    items?: SbBlokData[];
+  };
+}
 
+export default function Grid({ blok }: GridProps) {
   return (
     <section
-      {...storyblokEditable(blok as { _uid: string; _editable?: string })}
+      {...storyblokEditable(blok)}
       className="max-w-4xl mx-auto w-full bg-blue-100 pt-16 pb-5 px-4 rounded-md shadow my-20"
     >
       <h2 className="text-3xl text-center md:text-3xl font-bold">

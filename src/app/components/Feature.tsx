@@ -1,19 +1,20 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { StoryblokFeature } from "@/src/interface";
-import { storyblokEditable } from "@storyblok/react/rsc";
+import { SbBlokData, storyblokEditable } from "@storyblok/react/rsc";
 
-const Feature = (params: StoryblokFeature) => {
-  // console.log("Feature component params:", params);
+interface FeatureProps {
+  blok: SbBlokData & {
+    headline: string;
+    content?: string;
+  };
+}
 
+export default function Feature({ blok }: FeatureProps) {
   return (
     <div
-      {...storyblokEditable(params.blok as { _uid: string; _editable?: string })}
+      {...storyblokEditable(blok)}
       className="bg-white p-8 rounded-sm shadow"
     >
-      <h3 className="font-bold text-xl">{params.blok.headline}</h3>
-      <p className="mt-6 text-sm">{params.blok.content}</p>
+      <h3 className="font-bold text-xl">{blok.headline}</h3>
+      {blok.content && <p className="mt-6 text-sm">{blok.content}</p>}
     </div>
   );
-};
-
-export default Feature;
+}

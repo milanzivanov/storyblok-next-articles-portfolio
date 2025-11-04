@@ -1,14 +1,23 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { AboutBlokProps } from "@/src/interface";
-import { storyblokEditable } from "@storyblok/react";
+import { SbBlokData, storyblokEditable } from "@storyblok/react/rsc";
+import { StoryblokAsset } from "@/src/interface";
 import Image from "next/image";
 
-function About({ blok }: AboutBlokProps) {
-  // console.log("About component params:", blok);
+interface AboutProps {
+  blok: SbBlokData & {
+    headline: string;
+    body?: string;
+    about_image?: StoryblokAsset;
+  };
+}
+
+export default function About({ blok }: AboutProps) {
+  if (!blok.about_image) {
+    return null;
+  }
 
   return (
     <section
-      {...storyblokEditable(blok as any)}
+      {...storyblokEditable(blok)}
       className="max-w-4xl mx-auto w-full bg-blue-100 pt-16 pb-5 px-4 rounded-md shadow my-20"
     >
       <h2 className="text-3xl text-center md:text-3xl font-bold">
@@ -23,10 +32,11 @@ function About({ blok }: AboutBlokProps) {
           height={200}
         />
       </div>
-      <div className="grid md:grid-flow-col auto-cols-fr mt-6 gap-8">
-        <p className="text-sm text-center font-md">{blok.body}</p>
-      </div>
+      {blok.body && (
+        <div className="grid md:grid-flow-col auto-cols-fr mt-6 gap-8">
+          <p className="text-sm text-center font-md">{blok.body}</p>
+        </div>
+      )}
     </section>
   );
 }
-export default About;
