@@ -5,7 +5,7 @@ import { draftMode } from "next/headers";
 export async function fetchHomeData() {
   // draft mode
   const { isEnabled } = await draftMode();
-  console.log("Draft mode is", isEnabled ? "enabled" : "disabled");
+  // console.log("Draft mode is", isEnabled ? "enabled" : "disabled");
 
   const client = getStoryblokApi();
   const response = await client.getStory("home", {

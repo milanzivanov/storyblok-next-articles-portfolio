@@ -15,10 +15,14 @@ export const generateStaticParams = async () => {
 };
 
 const fetchArticlePage = async (slug: string) => {
+
   const { isEnabled } = await draftMode();
+
+
   const client = getStoryblokApi();
   const response = await client.getStory(`articles/${slug}`, {
-    version: isEnabled ? "draft" : "published"
+    // version: isEnabled ? "draft" : "published"
+    version: process.env.NODE_ENV === "development" || isEnabled ? "draft" : "published",
   });
 
   return response.data.story;
