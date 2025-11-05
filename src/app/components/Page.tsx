@@ -1,5 +1,3 @@
-// /* eslint-disable @typescript-eslint/no-explicit-any */
-// import { StoryblokHomeContent } from "@/src/interface";
 import { SbBlokData, storyblokEditable, StoryblokServerComponent } from "@storyblok/react/rsc";
 
 interface PageProps {
