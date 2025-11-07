@@ -14,7 +14,6 @@ It helped me understand the integration between a headless CMS and a modern Reac
 
 - Visual editing in Storyblok  
 - Fully typed components  
-- Modern responsive design  
 
 ## 🌐 Live Preview
 
