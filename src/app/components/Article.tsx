@@ -34,7 +34,7 @@ export default function Article({ blok }: ArticleProps) {
   const { width, height } = getImageDimensions(blok.main_image.filename);
 
   return (
-    <main {...storyblokEditable(blok)} className="max-w-4xl mx-auto px-4 w-full pt-6 pb-12">
+    <main {...storyblokEditable(blok)} className="bg-white rounded-sm max-w-4xl mx-auto px-4 w-full pt-6 pb-12 mb-5">
       <h3 className="text-3xl font-bold">
         {blok.name}
         {blok.category && <span className="text-blue-700">({blok.category})</span>}
