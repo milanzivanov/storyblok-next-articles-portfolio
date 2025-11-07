@@ -1,6 +1,21 @@
-This is a **Next.js + Storyblok** project that I built for learning purposes and to feed my curiosity about how Storyblok works.  
-The frontend is built with **Next.js**, and the backend uses **Storyblok**, **TypeScript**, and **Tailwind CSS**.  
+# 🧩 Next.js + Storyblok Project
 
-👉 [Live Preview](https://storyblok-next-articles-portfolio.vercel.app)
+This is a **Next.js + Storyblok** project I built for learning purposes and to explore how Storyblok works.  
+It helped me understand the integration between a headless CMS and a modern React-based framework.
 
-It includes **visual editing** support.
+## 🚀 Tech Stack
+
+- **Frontend:** Next.js  
+- **Backend:** Storyblok  
+- **Language:** TypeScript  
+- **Styling:** Tailwind CSS  
+
+## 🔍 Features
+
+- Visual editing in Storyblok  
+- Fully typed components  
+- Modern responsive design  
+
+## 🌐 Live Preview
+
+👉 [storyblok-next-articles-portfolio.vercel.app](https://storyblok-next-articles-portfolio.vercel.app)
